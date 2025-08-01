@@ -28,7 +28,9 @@ const SimplifiedHero = ({
           src={heroImage}
           alt={altText}
           className="w-full h-full object-cover mix-blend-multiply opacity-30"
-          loading="lazy"
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
           width={1920}
           height={1080}
         />

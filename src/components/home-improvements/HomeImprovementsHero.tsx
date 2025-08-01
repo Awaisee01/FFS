@@ -20,7 +20,9 @@ const HomeImprovementsHero = () => {
           src="/lovable-uploads/home2.webp"
           alt="Home Improvements Background - Modern house exterior with driveway"
           className="w-full h-full object-cover mix-blend-multiply"
-          loading='lazy'
+          loading='eager'
+          fetchPriority="high"
+          decoding="sync"
           width={1920}
           height={1080}
           sizes="100vw"

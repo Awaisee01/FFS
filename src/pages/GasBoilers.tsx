@@ -84,6 +84,8 @@ const GasBoilers = () => {
             src="/lovable-uploads/gas.webp"
             alt="Gas Boiler Background - Engineer working on boiler installation"
             className="w-full h-full object-cover mix-blend-multiply"
+            fetchPriority="high"
+            decoding="sync"
             width={1920}
             height={1080}
             sizes="100vw"
