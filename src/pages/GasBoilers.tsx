@@ -81,7 +81,7 @@ const GasBoilers = () => {
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="absolute inset-0 opacity-30 will-change-transform">
           <OptimizedImage
-            src="/public/lovable-uploads/gas.webp"
+            src="/lovable-uploads/gas.webp"
             alt="Gas Boiler Background - Engineer working on boiler installation"
             className="w-full h-full object-cover mix-blend-multiply"
             width={1920}

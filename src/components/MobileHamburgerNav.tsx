@@ -39,7 +39,7 @@ const MobileHamburgerNav = () => {
         {/* Logo */}
         <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <img 
-            src="/lovable-uploads/530a44a7-5098-4326-9fc0-fb553bdd9052.png"
+            src="/lovable-uploads/head.webp"
             loading='lazy'
             // src="/lovable-uploads/logo.webp"  
             alt="Funding For Scotland Logo" 
