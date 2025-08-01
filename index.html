@@ -57,15 +57,16 @@
     <link rel="manifest" href="/manifest.json">
     
     <!-- Preload critical fonts with correct MIME types -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" crossorigin></noscript>
     
     <!-- Preload LCP hero image with correct dimensions and fetchpriority -->
     <link rel="preload" href="/lovable-uploads/1932c2a7-9b3e-46a2-8e62-d0fabe9d2ade.png" as="image" fetchpriority="high" media="(max-width: 767px)" imagesrcset="/lovable-uploads/1932c2a7-9b3e-46a2-8e62-d0fabe9d2ade.png 767w">
     <link rel="preload" href="/lovable-uploads/1932c2a7-9b3e-46a2-8e62-d0fabe9d2ade.png" as="image" fetchpriority="high" media="(min-width: 768px)">
-    
+    <!-- ADD THESE CRITICAL RESOURCE PRELOADS -->
+    <link rel="modulepreload" href="/src/main.tsx">
+    <link rel="preload" href="/assets/vendor-B8h31Ehh.js" as="script" crossorigin>
+    <link rel="preload" href="/assets/index-DisumDkt.js" as="script" crossorigin>
     <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
     
     <!-- Enhanced Security Headers -->
@@ -284,30 +285,37 @@
       }
     </script>
      <!-- Meta Pixel Code -->
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1423013825182147', {
-        external_id: 'funding_scotland_' + Date.now()
-      });
-      
-      // Track initial PageView with enhanced data
-      fbq('track', 'PageView', {
-        content_name: 'Website Visit',
-        content_category: 'page_view',
-        page_type: window.location.pathname.includes('/eco4') ? 'eco4_landing' : 
-                   window.location.pathname.includes('/solar') ? 'solar_landing' : 'homepage',
-        value: 1,
-        currency: 'GBP',
-        event_id: 'pageview_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
-      });
-    </script>
+  <!-- Meta Pixel Code - DEFERRED -->
+<script>
+// Load Facebook Pixel after page is fully loaded
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    
+    fbq('init', '1423013825182147', {
+      external_id: 'funding_scotland_' + Date.now()
+    });
+    
+    fbq('track', 'PageView', {
+      content_name: 'Website Visit',
+      content_category: 'page_view',
+      page_type: window.location.pathname.includes('/eco4') ? 'eco4_landing' : 
+                 window.location.pathname.includes('/solar') ? 'solar_landing' : 'homepage',
+      value: 1,
+      currency: 'GBP',
+      event_id: 'pageview_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
+    });
+  }, 500); // Small delay to prioritize critical rendering
+});
+</script>
+<!-- End Meta Pixel Code -->
     <!-- End Meta Pixel Code -->
   </body>
 </html>
