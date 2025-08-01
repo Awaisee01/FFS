@@ -79,7 +79,7 @@ const Contact = () => {
             {/* Contact Image */}
             <div className="flex justify-center order-2 lg:order-1">
               <img 
-                src="/lovable-uploads/634c85e5-6ae1-4b04-8017-714d5bc1c1bc.png"
+                src="/lovable-uploads/contact.webp"
                 alt="Funding for Scotland advisor"
                 className="rounded-2xl shadow-xl max-w-full h-auto object-cover"
                 loading='lazy'

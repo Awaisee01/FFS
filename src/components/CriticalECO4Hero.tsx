@@ -38,24 +38,13 @@ const CriticalECO4Hero = ({ scrollY }: CriticalECO4HeroProps) => {
       }}>
         {/* Optimized hero image for LCP - properly marked as above-the-fold content */}
         <div className="absolute inset-0 w-full h-full" style={{ containIntrinsicSize: '100vw 100vh', opacity: 0.3 }}>
-          <picture>
-            <source 
-              media="(max-width: 767px)" 
-              srcSet="/lovable-uploads/1932c2a7-9b3e-46a2-8e62-d0fabe9d2ade.png 767w"
-              sizes="(max-width: 767px) 100vw"
-            />
-            <source 
-              media="(min-width: 768px)" 
-              srcSet="/lovable-uploads/1932c2a7-9b3e-46a2-8e62-d0fabe9d2ade.png 1920w"
-              sizes="(min-width: 768px) 100vw"
-            />
+        
             <img
-              src="/lovable-uploads/1932c2a7-9b3e-46a2-8e62-d0fabe9d2ade.png"
+              src="/lovable-uploads/eco.webp"
               alt="ECO4 Energy Efficiency Background - Aerial view of modern Scottish houses"
               className="w-full h-full object-cover"
-              loading="eager"
+              loading="lazy"
               decoding="sync"
-              fetchPriority="high"
               width={1920}
               height={1080}
               onLoad={() => setImageLoaded(true)}
@@ -66,7 +55,7 @@ const CriticalECO4Hero = ({ scrollY }: CriticalECO4HeroProps) => {
                 contentVisibility: 'visible'
               }}
             />
-          </picture>
+
         </div>
         
         {/* Additional gradient overlay for better visibility */}

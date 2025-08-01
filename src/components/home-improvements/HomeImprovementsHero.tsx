@@ -1,7 +1,6 @@
 
 import { CheckCircle } from 'lucide-react';
 import SimpleHomeImprovementsForm from '@/components/SimpleHomeImprovementsForm';
-import OptimizedImage from '@/components/OptimizedImage';
 
 const HomeImprovementsHero = () => {
   const benefits = [
@@ -17,17 +16,14 @@ const HomeImprovementsHero = () => {
       
       {/* Static background image without parallax */}
       <div className="absolute inset-0 opacity-30">
-        <OptimizedImage
-          src="/lovable-uploads/29502115-60f2-411e-928e-8d3f6c3383c7.png"
+        <img
+          src="/lovable-uploads/home2.webp"
           alt="Home Improvements Background - Modern house exterior with driveway"
           className="w-full h-full object-cover mix-blend-multiply"
-          priority={true}
-          responsive={true}
-          preload={true}
+          loading='lazy'
           width={1920}
           height={1080}
           sizes="100vw"
-          modernFormats={false}
         />
       </div>
       

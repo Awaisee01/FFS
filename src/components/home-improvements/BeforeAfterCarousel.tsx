@@ -7,33 +7,32 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
-import OptimizedImage from '@/components/OptimizedImage';
 
 const BeforeAfterCarousel = () => {
   const beforeAfterImages = [
     {
-      before: "/lovable-uploads/245736bc-2f67-4f44-938d-82fa05111548.png",
-      after: "/lovable-uploads/37194ab7-973a-40fd-88f1-80936afde467.png",
+      before: "/lovable-uploads/home1.webp",
+      after: "/lovable-uploads/home2.webp",
       description: "Roof tile restoration and cleaning"
     },
     {
-      before: "/lovable-uploads/991d80f9-0561-47ed-a877-8ca0a2f7222e.png", 
-      after: "/lovable-uploads/8f34acb2-5ccb-494b-ad5e-22b2431b36ed.png",
+      before: "/lovable-uploads/home3.webp", 
+      after: "/lovable-uploads/home4.webp",
       description: "Complete roof renovation and coating"
     },
     {
-      before: "/lovable-uploads/415da1c4-2239-44b4-8f43-e535e749984b.png",
-      after: "/lovable-uploads/f40577a6-0070-4534-a178-a326c9a839eb.png", 
+      before: "/lovable-uploads/home5.webp",
+      after: "/lovable-uploads/home6.webp", 
       description: "Roof and exterior wall transformation"
     },
     {
-      before: "/lovable-uploads/8ea43231-f712-44ea-83b5-02c17dde707b.png",
-      after: "/lovable-uploads/2548ed02-2948-4e58-acfa-86bca6285630.png",
+      before: "/lovable-uploads/home1.webp",
+      after: "/lovable-uploads/home8.webp",
       description: "Modern house renovation"
     },
     {
-      before: "/lovable-uploads/fd3d4fc9-865e-4bc1-861a-e1f75cc167d5.png",
-      after: "/lovable-uploads/2548ed02-2948-4e58-acfa-86bca6285630.png",
+      before: "/lovable-uploads/home9.webp",
+      after: "/lovable-uploads/home10.webp",
       description: "External wall and roof upgrade"
     }
   ];
@@ -67,6 +66,7 @@ const BeforeAfterCarousel = () => {
                         <img
                           src={image.src}
                           alt={image.alt}
+                          loading="lazy"
                           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                           width={300}
                           height={225}

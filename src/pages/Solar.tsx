@@ -4,7 +4,7 @@ import { trackPageView } from '@/lib/unified-tracking-manager';
 import SimpleSolarForm from '@/components/SimpleSolarForm';
 import SimplifiedHero from '@/components/SimplifiedHero';
 import HeroSkeleton from '@/components/HeroSkeleton';
-import { CheckCircle, Home, Thermometer, Heart, Shield } from 'lucide-react';
+import {  Home, Thermometer, Heart, Shield } from 'lucide-react';
 // Performance hooks removed
 
 // Lazy load sections that are below the fold
@@ -91,7 +91,7 @@ const Solar = () => {
         subtitle="Completely free solar panels."
         description="If your current heating system is an Air Source Heat Pump, you could qualify for free solar through the ECO4 Scheme."
         benefits={benefits}
-        heroImage="/lovable-uploads/602ec2e7-cda6-46d7-9da5-0dbdb581a74b.png"
+        heroImage="/lovable-uploads/solar.webp"
         altText="Row of modern houses with solar panels on roofs under blue sky"
       >
         <SimpleSolarForm />
