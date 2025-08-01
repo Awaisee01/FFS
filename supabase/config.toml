@@ -1,0 +1,39 @@
+project_id = "nncpapnlnrtssbruzkla"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+
+[studio]
+enabled = true
+port = 54323
+
+[inbucket]
+enabled = true
+port = 54324
+smtp_port = 54325
+pop3_port = 54326
+
+[edge_runtime]
+policy = "per_worker"
+
+[functions.facebook-conversions-api]
+import_map = "./supabase/functions/import_map.json"
+
+[functions.send-enquiry-notification]
+verify_jwt = false
+
+[functions.secure-form-submission]
+verify_jwt = false
+
+[functions.update-admin-submission]
+verify_jwt = false
+
+[functions.bulk-delete-submissions]
+verify_jwt = false

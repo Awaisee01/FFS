@@ -1,0 +1,44 @@
+{
+  "name": "Funding For Scotland - Government Grants & Energy Upgrades",
+  "short_name": "Funding Scotland",
+  "description": "Access free government funding for ECO4, Solar Panels, Gas Boilers & Home Improvements in Scotland. Professional installation and energy efficiency upgrades.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "categories": ["government", "energy", "utilities", "finance"],
+  "lang": "en-GB",
+  "scope": "/",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/lovable-uploads/beb68662-b15e-4c22-bae2-7be4c6bb42e7.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/lovable-uploads/1932c2a7-9b3e-46a2-8e62-d0fabe9d2ade.webp",
+      "sizes": "1200x800",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "Home page showing ECO4 funding options"
+    }
+  ]
+}

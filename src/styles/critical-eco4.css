@@ -1,0 +1,41 @@
+/* Critical-only utility CSS - Minimal set for ECO4 page above-the-fold content */
+
+/* Reset and base styles - optimized for size */
+*{box-sizing:border-box;margin:0;padding:0}html{font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{background:#fff;color:#1a1a1a;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;line-height:1.6}
+
+/* Critical hero styles - compressed */
+.hero-gradient{background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 35%,#059669 100%)}
+.hero-text-white{color:#fff}.hero-text-blue-100{color:#dbeafe}.hero-text-blue-50{color:#eff6ff}.hero-text-green-300{color:#86efac}
+
+/* Critical layout - essential only */
+.relative{position:relative}.absolute{position:absolute}.inset-0{top:0;right:0;bottom:0;left:0}.flex{display:flex}.grid{display:grid}.hidden{display:none}.w-full{width:100%}.h-full{height:100%}.min-h-screen{min-height:100vh}.items-center{align-items:center}.justify-center{justify-content:center}.space-x-3>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.75rem * var(--tw-space-x-reverse));margin-left:calc(.75rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem * var(--tw-space-y-reverse))}
+
+/* Critical text utilities - compressed */
+.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.leading-tight{line-height:1.25}
+
+/* Critical spacing - minimal set */
+.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.px-4{padding-left:1rem;padding-right:1rem}.py-20{padding-top:5rem;padding-bottom:5rem}.gap-12{gap:3rem}
+
+/* Critical responsive grid */
+.lg\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+/* Hero image optimization */
+.hero-image-container{aspect-ratio:16/9;background-color:#f3f4f6}
+
+/* Form card critical styles */
+.form-card{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-radius:.75rem;box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 10px 10px -5px rgba(0,0,0,.04)}
+
+/* Loading states */
+.loading #root{opacity:0;transition:opacity .2s ease}.loaded #root{opacity:1}
+
+/* Responsive breakpoint - lg only for critical path */
+@media (min-width:1024px){
+.text-4xl{font-size:3.75rem;line-height:1}
+.py-20{padding-top:6rem;padding-bottom:6rem}
+.lg\:text-6xl{font-size:3.75rem;line-height:1}
+.lg\:py-24{padding-top:6rem;padding-bottom:6rem}
+.lg\:order-1{order:1}
+.lg\:order-2{order:2}
+.lg\:justify-end{justify-content:flex-end}
+.lg\:px-8{padding-left:2rem;padding-right:2rem}
+}

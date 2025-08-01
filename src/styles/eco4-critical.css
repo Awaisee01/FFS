@@ -1,0 +1,164 @@
+/* ECO4 Hero Critical CSS - Extracted for immediate rendering */
+
+/* Base reset and typography */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-display: swap;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: #ffffff;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  touch-action: manipulation;
+}
+
+/* Critical layout utilities */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.min-h-screen { min-height: 100vh; }
+.overflow-hidden { overflow: hidden; }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.max-w-7xl { max-width: 80rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* Flexbox and Grid */
+.flex { display: flex; }
+.grid { display: grid; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.text-center { text-align: center; }
+
+/* Spacing */
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.gap-8 { gap: 2rem; }
+.space-x-3 > :not([hidden]) ~ :not([hidden]) { margin-left: 0.75rem; }
+.space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.75rem; }
+.space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
+
+/* Typography */
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+.text-base { font-size: 1rem; line-height: 1.5rem; }
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.font-bold { font-weight: 700; }
+.font-medium { font-weight: 500; }
+.leading-tight { line-height: 1.25; }
+.leading-relaxed { line-height: 1.625; }
+
+/* Colors */
+.text-white { color: #ffffff; }
+.text-gray-600 { color: #4b5563; }
+.text-gray-300 { color: #d1d5db; }
+.bg-black { background-color: #000000; }
+.bg-gray-300 { background-color: #d1d5db; }
+
+/* Hero-specific styles */
+.hero-gradient {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 35%, #059669 100%);
+}
+
+.hero-text-blue-100 { color: #dbeafe; }
+.hero-text-blue-50 { color: #eff6ff; }
+.hero-text-green-300 { color: #86efac; }
+
+.hero-image-container {
+  aspect-ratio: 16/9;
+  background: #f3f4f6;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Object utilities */
+.object-cover { object-fit: cover; }
+.mix-blend-multiply { mix-blend-mode: multiply; }
+
+/* Opacity */
+.opacity-20 { opacity: 0.2; }
+.opacity-30 { opacity: 0.3; }
+
+/* Transform utilities */
+.will-change-transform { will-change: transform; }
+
+/* Flex utilities */
+.flex-shrink-0 { flex-shrink: 0; }
+
+/* Size utilities */
+.h-4 { height: 1rem; }
+.h-5 { height: 1.25rem; }
+.h-6 { height: 1.5rem; }
+.h-12 { height: 3rem; }
+.w-5 { width: 1.25rem; }
+.w-6 { width: 1.5rem; }
+.w-3\/4 { width: 75%; }
+.max-w-md { max-width: 28rem; }
+
+/* Border utilities */
+.rounded { border-radius: 0.25rem; }
+
+/* Form card */
+.form-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  max-width: 100%;
+}
+
+/* Order utilities */
+.order-1 { order: 1; }
+.order-2 { order: 2; }
+
+/* Animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+/* Responsive styles */
+@media (min-width: 640px) {
+  .sm\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+  .sm\:text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+  .sm\:text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+  .sm\:text-base { font-size: 1rem; line-height: 1.5rem; }
+  .sm\:mb-6 { margin-bottom: 1.5rem; }
+  .sm\:mb-8 { margin-bottom: 2rem; }
+  .sm\:py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+  .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .sm\:h-6 { height: 1.5rem; }
+  .sm\:w-6 { width: 1.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .lg\:text-6xl { font-size: 3.75rem; line-height: 1; }
+  .lg\:text-2xl { font-size: 1.5rem; line-height: 2rem; }
+  .lg\:text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+  .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lg\:gap-12 { gap: 3rem; }
+  .lg\:order-1 { order: 1; }
+  .lg\:order-2 { order: 2; }
+  .lg\:justify-end { justify-content: flex-end; }
+  .lg\:text-left { text-align: left; }
+  .lg\:mx-0 { margin-left: 0; margin-right: 0; }
+  .lg\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+  .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+}
