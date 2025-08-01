@@ -1,6 +1,7 @@
 
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
+// import { visualizer } from 'rollup-plugin-visualizer';
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
@@ -24,6 +25,7 @@ export default defineConfig(({ mode }) => ({
   // Ensure proper MIME types for TypeScript/JSX files
   assetsInclude: [],
   plugins: [
+//  visualizer({ open: true, gzipSize: true }),
     react(),
     mode === 'development' && componentTagger(),
   ].filter(Boolean),
@@ -40,13 +42,18 @@ export default defineConfig(({ mode }) => ({
     chunkSizeWarningLimit: 500, // Even smaller chunks for faster loading
     cssCodeSplit: true,
     assetsInlineLimit: 1024, // Smaller inline limit to reduce bundle size
-    rollupOptions: {
-      // Force everything into a single bundle to prevent loading order issues
-      output: {
-        inlineDynamicImports: true,
-        manualChunks: undefined,
+     rollupOptions: {
+    output: {
+      manualChunks: {
+        vendor: ['react', 'react-dom'],
+        router: ['react-router-dom'],
+        forms: ['react-hook-form', '@hookform/resolvers', 'zod'],
+        ui: ['@radix-ui/react-dialog', '@radix-ui/react-slot', '@radix-ui/react-label'],
+        supabase: ['@supabase/supabase-js', '@tanstack/react-query'],
+        utils: ['clsx', 'tailwind-merge', 'class-variance-authority']
       }
-    },
+    }
+  },
     // Disable module preload that might cause loading issues
     modulePreload: false,
     reportCompressedSize: false // Faster builds

@@ -8,6 +8,25 @@ export default {
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
 	],
+	 // ADD THIS SECTION
+  purge: {
+    enabled: process.env.NODE_ENV === 'production',
+    content: [
+      "./index.html", 
+      "./src/**/*.{js,ts,jsx,tsx}"
+    ],
+    options: {
+      safelist: [
+        // Keep these classes even if purge doesn't detect them
+        'animate-pulse',
+        'animate-spin', 
+        'hover:bg-green-600',
+        'focus:ring-2',
+        'disabled:bg-gray-400',
+        'disabled:cursor-not-allowed'
+      ]
+    }
+  },
 	prefix: "",
 	theme: {
 		container: {

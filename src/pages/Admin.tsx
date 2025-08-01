@@ -1,7 +1,8 @@
-
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import AdminLogin from '@/components/AdminLogin';
-import AdminDashboard from '@/components/AdminDashboard';
+
+// Lazy load the heavy AdminDashboard
+const AdminDashboard = lazy(() => import('@/components/AdminDashboard'));
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -46,7 +47,13 @@ const Admin = () => {
   }
 
   return isAuthenticated ? (
-    <AdminDashboard onLogout={handleLogout} />
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 to-green-600 flex items-center justify-center">
+        <div className="text-white text-lg">Loading Dashboard...</div>
+      </div>
+    }>
+      <AdminDashboard onLogout={handleLogout} />
+    </Suspense>
   ) : (
     <AdminLogin onLogin={handleLogin} />
   );

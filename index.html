@@ -45,7 +45,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="theme-color" content="#2563eb" />
     <meta name="apple-mobile-web-app-title" content="Funding For Scotland" />
-    
+    <!-- Preload critical fonts with correct MIME types -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- ADD THESE TWO LINES -->
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+    <link rel="preconnect" href="https://www.facebook.com" crossorigin>
     <!-- Optimized favicon with proper caching -->
     <link rel="icon" href="/lovable-uploads/beb68662-b15e-4c22-bae2-7be4c6bb42e7.png" type="image/png" sizes="32x32">
     <link rel="apple-touch-icon" href="/icon-192.png" sizes="192x192">
@@ -249,32 +254,7 @@
       .focus\:rounded:focus{border-radius:0.25rem}
     </style>
     
-    <!-- Meta Pixel Code -->
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1423013825182147', {
-        external_id: 'funding_scotland_' + Date.now()
-      });
-      
-      // Track initial PageView with enhanced data
-      fbq('track', 'PageView', {
-        content_name: 'Website Visit',
-        content_category: 'page_view',
-        page_type: window.location.pathname.includes('/eco4') ? 'eco4_landing' : 
-                   window.location.pathname.includes('/solar') ? 'solar_landing' : 'homepage',
-        value: 1,
-        currency: 'GBP',
-        event_id: 'pageview_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
-      });
-    </script>
-    <!-- End Meta Pixel Code -->
+   
     
   </head>
 
@@ -303,5 +283,31 @@
         });
       }
     </script>
+     <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1423013825182147', {
+        external_id: 'funding_scotland_' + Date.now()
+      });
+      
+      // Track initial PageView with enhanced data
+      fbq('track', 'PageView', {
+        content_name: 'Website Visit',
+        content_category: 'page_view',
+        page_type: window.location.pathname.includes('/eco4') ? 'eco4_landing' : 
+                   window.location.pathname.includes('/solar') ? 'solar_landing' : 'homepage',
+        value: 1,
+        currency: 'GBP',
+        event_id: 'pageview_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
+      });
+    </script>
+    <!-- End Meta Pixel Code -->
   </body>
 </html>

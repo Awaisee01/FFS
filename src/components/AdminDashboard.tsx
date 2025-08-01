@@ -1,19 +1,33 @@
-
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import type { Database } from '@/integrations/supabase/types';
 import { supabase } from '@/integrations/supabase/client';
 
-// Import the components
+// Keep lightweight components as regular imports
 import { AdminDashboardHeader } from './admin/AdminDashboardHeader';
 import { QuickStats } from './admin/QuickStats';
 import { AdvancedFilters } from './admin/AdvancedFilters';
 import { SubmissionsTable } from './admin/SubmissionsTable';
-import { SubmissionDetailModal } from './admin/SubmissionDetailModal';
-import { DashboardAnalytics } from './admin/DashboardAnalytics';
-import { TrafficAnalytics } from './admin/TrafficAnalytics';
 import { PaginationControls } from './admin/PaginationControls';
 import { TestEmailButton } from './admin/TestEmailButton';
+
+// Lazy load the HEAVY components
+const DashboardAnalytics = lazy(() => 
+  import('./admin/DashboardAnalytics').then(module => ({ 
+    default: module.DashboardAnalytics 
+  }))
+);
+const TrafficAnalytics = lazy(() => 
+  import('./admin/TrafficAnalytics').then(module => ({ 
+    default: module.TrafficAnalytics 
+  }))
+);
+
+const SubmissionDetailModal = lazy(() => 
+  import('./admin/SubmissionDetailModal').then(module => ({ 
+    default: module.SubmissionDetailModal 
+  }))
+);
 
 // Import hooks
 import { useAdminDashboard } from '@/hooks/useAdminDashboard';
@@ -159,18 +173,20 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
           <TestEmailButton />
         </div>
 
-        {/* Analytics Dashboard */}
+        {/* Analytics Dashboard - LAZY LOADED */}
         {showAnalytics && (
-          <div className="mb-8 space-y-8">
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Form Submissions Analytics</h2>
-              <DashboardAnalytics submissions={submissions} />
+          <Suspense fallback={<div className="mb-8 h-64 bg-gray-200 animate-pulse rounded-lg"></div>}>
+            <div className="mb-8 space-y-8">
+              <div>
+                <h2 className="text-xl font-semibold mb-4">Form Submissions Analytics</h2>
+                <DashboardAnalytics submissions={submissions} />
+              </div>
+              <div>
+                <h2 className="text-xl font-semibold mb-4">Website Traffic Analytics</h2>
+                <TrafficAnalytics />
+              </div>
             </div>
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Website Traffic Analytics</h2>
-              <TrafficAnalytics />
-            </div>
-          </div>
+          </Suspense>
         )}
 
         {/* Quick Stats Overview */}
@@ -221,17 +237,19 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
         )}
       </div>
 
-      {/* Detail Modal */}
+      {/* Detail Modal - LAZY LOADED */}
       {selectedSubmission && (
-        <SubmissionDetailModal
-          submission={selectedSubmission}
-          editingNotes={editingNotes}
-          editingStatus={editingStatus}
-          onClose={() => setSelectedSubmission(null)}
-          onNotesChange={setEditingNotes}
-          onStatusChange={setEditingStatus}
-          onSave={handleSaveSubmission}
-        />
+        <Suspense fallback={<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"><div className="bg-white p-4 rounded">Loading...</div></div>}>
+          <SubmissionDetailModal
+            submission={selectedSubmission}
+            editingNotes={editingNotes}
+            editingStatus={editingStatus}
+            onClose={() => setSelectedSubmission(null)}
+            onNotesChange={setEditingNotes}
+            onStatusChange={setEditingStatus}
+            onSave={handleSaveSubmission}
+          />
+        </Suspense>
       )}
     </div>
   );
