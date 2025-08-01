@@ -55,11 +55,12 @@ const SimpleNav = () => {
         <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
           <img 
             src="/lovable-uploads/530a44a7-5098-4326-9fc0-fb553bdd9052.png" 
+            // src="/lovable-uploads/logo.webp" 
             alt="Funding For Scotland - Home Energy Efficiency Grants"
             width="240"
             height="60"
             className="h-14 w-auto max-w-[240px] object-contain"
-            loading="eager"
+            loading="lazy"
             fetchPriority="high"
             decoding="async"
           />

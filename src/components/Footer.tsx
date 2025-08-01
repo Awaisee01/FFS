@@ -13,6 +13,7 @@ const Footer = () => {
                 src="/lovable-uploads/2aa49ae8-73b1-423e-a150-6873ec2f9cf6.png" 
                 alt="Funding For Scotland Logo" 
                 className="h-8 sm:h-10 lg:h-12 w-auto object-contain"
+                loading='lazy'
               />
             </div>
             <p className="text-gray-300 mb-4 sm:mb-6 max-w-md text-sm sm:text-base leading-relaxed">
