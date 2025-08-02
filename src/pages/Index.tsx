@@ -45,51 +45,45 @@
 // export default Index;
 
 
-import { useEffect, Suspense, lazy } from 'react';
+
+
+import { useEffect, useState, Suspense, lazy } from 'react';
 import Hero from '@/components/Hero';
-// CRITICAL FIX: Don't lazy load above-the-fold content!
 import ServicesGrid from '@/components/ServicesGrid';
 
-// Only lazy load below-the-fold sections
+// Lazy load with delayed rendering
 const TrustBadges = lazy(() => import('@/components/TrustBadges'));
 const CallToActionSection = lazy(() => import('@/components/CallToActionSection'));
 
 const Index = () => {
+  const [showBelowFold, setShowBelowFold] = useState(false);
+
   useEffect(() => {
     document.title = 'Scottish Grants & Funding - Government Funding For Scotland';
     
-    // Smart preloading: Start loading below-the-fold components after initial render
-    const preloadTimer = setTimeout(() => {
-      // Preload components that will be needed soon
-      import('@/components/TrustBadges');
-      import('@/components/CallToActionSection');
-    }, 1000); // 1 second delay to not interfere with critical loading
-    
-    // Also preload on user interaction (scroll, mouse move)
-    const preloadOnInteraction = () => {
-      import('@/components/TrustBadges');
-      import('@/components/CallToActionSection');
-      // Clean up listeners once preloading starts
-      window.removeEventListener('scroll', preloadOnInteraction);
-      window.removeEventListener('mousemove', preloadOnInteraction);
-      window.removeEventListener('touchstart', preloadOnInteraction);
+    // CRITICAL FIX: Delay below-the-fold content to prevent critical path blocking
+    const timer = setTimeout(() => {
+      setShowBelowFold(true);
+    }, 2000); // 2 second delay ensures critical path completes first
+
+    // Also trigger on scroll for better UX
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setShowBelowFold(true);
+      }
     };
-    
-    window.addEventListener('scroll', preloadOnInteraction, { passive: true });
-    window.addEventListener('mousemove', preloadOnInteraction, { passive: true });
-    window.addEventListener('touchstart', preloadOnInteraction, { passive: true });
-    
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     return () => {
-      clearTimeout(preloadTimer);
-      window.removeEventListener('scroll', preloadOnInteraction);
-      window.removeEventListener('mousemove', preloadOnInteraction);
-      window.removeEventListener('touchstart', preloadOnInteraction);
+      clearTimeout(timer);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
     <div className="min-h-screen">
-      {/* Above-the-fold: Load immediately - NO lazy loading */}
+      {/* Above-the-fold: Load immediately */}
       <Hero 
         title="Unlock Scottish Grants & Funding"
         subtitle=""
@@ -103,17 +97,24 @@ const Index = () => {
         ]}
       />
       
-      {/* CRITICAL: ServicesGrid is above-the-fold, load immediately */}
+      {/* Critical: ServicesGrid loads immediately */}
       <ServicesGrid />
       
-      {/* Below-the-fold: Keep lazy loading with better fallbacks */}
-      <Suspense fallback={<div className="h-32 bg-gray-50 animate-pulse mx-4"></div>}>
-        <TrustBadges />
-      </Suspense>
-      
-      <Suspense fallback={<div className="h-40 bg-gray-50 animate-pulse rounded-lg mx-4"></div>}>
-        <CallToActionSection />
-      </Suspense>
+      {/* Below-the-fold: Only render after delay */}
+      {showBelowFold ? (
+        <>
+          <Suspense fallback={<div className="h-32 bg-gray-50 animate-pulse"></div>}>
+            <TrustBadges />
+          </Suspense>
+          
+          <Suspense fallback={<div className="h-40 bg-gray-50 animate-pulse rounded-lg"></div>}>
+            <CallToActionSection />
+          </Suspense>
+        </>
+      ) : (
+        // Invisible placeholder to prevent layout shift
+        <div className="h-72"></div>
+      )}
     </div>
   );
 };
