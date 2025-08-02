@@ -61,7 +61,7 @@ const SimpleNav = () => {
           className="flex items-center hover:opacity-80 transition-opacity"
         >
           <img
-            src="/lovable-uploads/headop.webp"
+            src="/lovable-uploads/headop-40.webp"
             alt="Funding For Scotland - Home Energy Efficiency Grants"
             width="40"
             height="40"
