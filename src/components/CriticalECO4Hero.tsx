@@ -119,7 +119,7 @@ const CriticalECO4Hero = ({ scrollY }: CriticalECO4HeroProps) => {
             </div>
 
             {/* TEXT CONTENT - ALWAYS SECOND ON MOBILE */}
-            <div className="order-2 lg:order-1 w-full  text-left">
+            <div className="   w-full  text-left">
               {/* FIXED: Use consistent sizing instead of responsive classes */}
               <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight min-h-[3.5rem]">
                 ECO4 Scheme
