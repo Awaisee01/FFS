@@ -60,7 +60,7 @@ const SimpleNav = () => {
             width="240"
             height="60"
             className="h-14 w-auto max-w-[240px] object-contain"
-            loading="lazy"
+            loading="eager"
             fetchPriority="high"
             decoding="async"
           />

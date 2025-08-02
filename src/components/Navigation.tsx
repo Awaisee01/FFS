@@ -53,7 +53,8 @@ const Navigation = () => {
                 
                 alt="ECO4, Solar Panels, Gas Boilers & Home Improvements Funding Scotland" 
                 style={{ height: '2rem', width: 'auto', objectFit: 'contain' }}
-                loading="lazy"
+                loading="eager"
+                decoding='async'
                 fetchPriority="high"
               />
             </Link>

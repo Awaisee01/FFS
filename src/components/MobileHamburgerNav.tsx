@@ -40,7 +40,9 @@ const MobileHamburgerNav = () => {
         <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <img 
             src="/lovable-uploads/head.webp"
-            loading='lazy'
+            loading='eager'
+            fetchPriority='high'
+            decoding='async'
             // src="/lovable-uploads/logo.webp"  
             alt="Funding For Scotland Logo" 
             style={{ height: '32px', width: 'auto' }}
