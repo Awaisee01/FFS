@@ -54,13 +54,12 @@ const SimpleNav = () => {
         {/* Logo - Always Visible */}
         <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
           <img 
-            src="/lovable-uploads/head.webp" 
+            src="/lovable-uploads/head (1).webp" 
             // src="/lovable-uploads/logo.webp" 
             alt="Funding For Scotland - Home Energy Efficiency Grants"
             width="240"
             height="60"
             className="h-14 w-auto max-w-[240px] object-contain"
-            loading="eager"
             fetchPriority="high"
             decoding="async"
           />

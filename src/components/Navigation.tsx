@@ -48,7 +48,7 @@ const Navigation = () => {
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
               <img 
-                src="/lovable-uploads/head.webp"
+                src="/lovable-uploads/head (1).webp"
                 // src="/lovable-uploads/logo.webp"  
                 
                 alt="ECO4, Solar Panels, Gas Boilers & Home Improvements Funding Scotland" 
