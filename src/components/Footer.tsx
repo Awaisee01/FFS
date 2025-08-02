@@ -8,14 +8,23 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           <div className="col-span-1 sm:col-span-2 lg:col-span-2">
-            <div className="flex items-center mb-4">
-              <img 
-                src="/lovable-uploads/foot.webp" 
-                alt="Funding For Scotland Logo" 
-                className="h-8 sm:h-10 lg:h-12 w-auto object-contain"
-                loading='lazy'
-              />
-            </div>
+          <Link
+          to="/"
+          className="flex items-center hover:opacity-80 transition-opacity"
+        >
+          <img
+            src="/lovable-uploads/headop.webp"
+            // src="/lovable-uploads/logo.webp"
+            alt="Funding For Scotland - Home Energy Efficiency Grants"
+            width="40"
+            height="40"
+            fetchPriority="high"
+            decoding="async"
+          />
+          <h1 className="text-2xl text-white  font-black" >
+            Funding <span className="text-xl font-black">for</span> Scotland
+          </h1>
+        </Link>
             <p className="text-gray-300 mb-4 sm:mb-6 max-w-md text-sm sm:text-base leading-relaxed">
               Scotland's free consultancy for residential grants and funding. We help you access government backed, local authority, and private company schemes for home improvements, energy efficiency upgrades, and renewable energy installations.
             </p>

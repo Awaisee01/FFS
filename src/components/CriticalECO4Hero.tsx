@@ -49,7 +49,6 @@ const CriticalECO4Hero = ({ scrollY }: CriticalECO4HeroProps) => {
             src="/lovable-uploads/eco.webp"
             alt="ECO4 Energy Efficiency Background - Aerial view of modern Scottish houses"
             className="w-full h-full object-cover"
-            loading="eager"
             fetchPriority="high"
             decoding="sync"
             width={1920}

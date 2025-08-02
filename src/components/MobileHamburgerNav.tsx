@@ -39,7 +39,7 @@ const MobileHamburgerNav = () => {
         {/* Logo */}
         <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <img 
-            src="/lovable-uploads/head (1).webp"
+            src="/lovable-uploads/headop.webp"
             fetchPriority='high'
             decoding='async'
             // src="/lovable-uploads/logo.webp"  
