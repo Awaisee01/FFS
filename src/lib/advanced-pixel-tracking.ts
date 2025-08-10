@@ -288,7 +288,6 @@ class AdvancedPixelTracker {
         ...eventData
       });
 
-      console.log(`🚀 ADVANCED PIXEL: ${eventName}`, enhancedData);
 
       // Browser pixel tracking
       if (typeof window !== 'undefined' && (window as any).fbq) {
@@ -296,7 +295,6 @@ class AdvancedPixelTracker {
         delete cleanData.user_behavior; // Remove complex objects for browser pixel
         
         (window as any).fbq('track', eventName, cleanData);
-        console.log('✅ BROWSER PIXEL: Event sent');
       }
 
       // Server-side tracking
@@ -306,7 +304,6 @@ class AdvancedPixelTracker {
         } else {
           // Queue for later if offline
           this.eventQueue.push({ eventName, data: enhancedData, eventId });
-          console.log('📦 QUEUED: Event stored for when online');
         }
       }
 
@@ -343,7 +340,6 @@ class AdvancedPixelTracker {
   private flushEventQueue(): void {
     if (this.eventQueue.length === 0) return;
     
-    console.log(`📦 FLUSHING: ${this.eventQueue.length} queued events`);
     
     this.eventQueue.forEach(({ eventName, data, eventId }) => {
       sendToConversionsAPI(eventName, data, eventId).catch(console.error);

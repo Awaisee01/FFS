@@ -21,7 +21,7 @@ const SimpleGasBoilersForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('🔥 GAS BOILERS FORM SUBMISSION - Enhanced Rich Data Mode');
+   
     
     if (!formData.fullName || !formData.email || !formData.phone || !formData.postCode) {
       toast.error("Please fill in all required fields");
@@ -36,7 +36,6 @@ const SimpleGasBoilersForm = () => {
     setIsSubmitting(true);
     
     try {
-      console.log('📤 STEP 1: Submitting to Supabase with enhanced data...');
       
       // Submit using secure form submission service (with notifications)
       const { data, error } = await supabase.functions.invoke('secure-form-submission', {
@@ -66,8 +65,7 @@ const SimpleGasBoilersForm = () => {
         throw new Error(`Submission failed: ${error.message}`);
       }
 
-      console.log('✅ STEP 1 COMPLETE: Supabase submission successful');
-      console.log('🚀 STEP 2: Sending RICH DATA to Facebook via Enhanced Tracking Manager...');
+      
 
       // ENHANCED: Track with rich Facebook data using enhanced tracking manager
       await trackFormSubmission('gas_boilers', {
@@ -91,15 +89,7 @@ const SimpleGasBoilersForm = () => {
         lead_source: 'gas_boilers_form'
       });
 
-      console.log('✅ STEP 2 COMPLETE: Enhanced rich data sent to Facebook');
-      console.log('📊 RICH DATA SENT INCLUDES:');
-      console.log('   - Complete customer profile (name, email, phone, address)');
-      console.log('   - Precise location data (full address + postcode)');
-      console.log('   - Business intelligence (lead value: £40, predicted LTV: £6,000)');
-      console.log('   - Service context (Gas Boiler interest, heating upgrade)');
-      console.log('   - Campaign attribution (UTM parameters, Facebook cookies)');
-      console.log('   - Multiple Facebook events (Lead + CompleteRegistration + Boiler Interest)');
-      console.log('🎯 Facebook algorithm now has rich Gas Boiler customer profile for lookalike targeting!');
+      
 
       setIsSubmitting(false);
       setShowSuccess(true);

@@ -76,7 +76,6 @@
         this.isInitialized = true;
         this.captureUTMData();
         this.processRetryQueue();
-        console.log('✅ ENHANCED Facebook Pixel initialized with rich data capabilities');
       } catch (error) {
         console.error('❌ Failed to initialize Facebook Pixel:', error);
       }
@@ -100,7 +99,6 @@
 
         if (Object.keys(utmData).length > 0) {
           localStorage.setItem('utm_data', JSON.stringify(utmData));
-          console.log('✅ UTM data captured for rich attribution:', utmData);
         }
       } catch (error) {
         console.warn('⚠️ Failed to capture UTM data:', error);
@@ -234,7 +232,6 @@
     // Main tracking function - ENHANCED
     async trackEvent(data: TrackingData): Promise<void> {
       try {
-        console.log('🚀 ENHANCED TRACKING - Processing rich customer data');
         
         const eventId = this.generateEventId(data.eventName);
         const utmData = this.getUTMData();
@@ -242,19 +239,7 @@
         const processedUserData = this.processUserData(data.userData);
         const enhancedData = this.generateEnhancedData(data);
 
-        console.log('📊 RICH DATA SUMMARY:');
-        console.log('👤 Customer Profile:', {
-          name: processedUserData.fullName || `${processedUserData.firstName} ${processedUserData.lastName}`,
-          email: processedUserData.email ? '✅ Provided' : '❌ Missing',
-          phone: processedUserData.phone ? '✅ Provided' : '❌ Missing',
-          location: `${processedUserData.city || 'Unknown'}, ${processedUserData.postcode || 'Unknown'}`
-        });
-        console.log('💰 Business Intelligence:', {
-          value: data.customData?.value || this.generateLeadValue(data.customData?.form_type || 'contact'),
-          predicted_ltv: enhancedData.predicted_ltv,
-          lead_quality: enhancedData.lead_quality
-        });
-        console.log('🎯 Attribution Data:', { ...utmData, ...fbCookies });
+        
 
         // Track with Facebook Pixel (browser-side) with ENHANCED data
         if ((window as any).fbq && this.isInitialized) {
@@ -298,14 +283,7 @@
             user_agent: navigator.userAgent
           };
           
-          console.log(`📤 SENDING RICH DATA TO FACEBOOK PIXEL (${data.eventName}):`, {
-            event: data.eventName,
-            value: pixelData.value,
-            currency: pixelData.currency,
-            advanced_matching_fields: ['em', 'ph', 'fn', 'ln', 'zp', 'ct'].filter(field => pixelData[field]),
-            rich_data_fields: Object.keys(pixelData).filter(key => key.startsWith('user_')),
-            business_intelligence: ['predicted_ltv', 'lead_quality', 'lead_score'].filter(field => pixelData[field])
-          });
+         
 
           // Send main event
           (window as any).fbq('track', data.eventName, pixelData);
@@ -351,7 +329,6 @@
         };
 
         await this.sendToConversionsAPI(conversionData);
-        console.log('✅ ENHANCED TRACKING COMPLETE - Rich customer data sent to Facebook');
 
       } catch (error) {
         console.error(`❌ Failed to track enhanced event ${data.eventName}:`, error);
@@ -403,7 +380,6 @@
           });
         }
 
-        console.log('✅ ADDITIONAL EVENTS: High-value lead events sent for enhanced optimization');
 
       } catch (error) {
         console.error('❌ Failed to send additional lead events:', error);
@@ -413,7 +389,6 @@
     // Send to Conversions API with retry logic (enhanced)
     private async sendToConversionsAPI(data: any, retryCount = 0): Promise<void> {
       try {
-        console.log('📡 SENDING RICH DATA TO CONVERSIONS API...');
         
         const { error } = await supabase.functions.invoke('facebook-conversions-api', {
           body: { data }
@@ -423,7 +398,6 @@
           console.error('❌ Conversions API error:', error);
           
           if (retryCount < this.maxRetries) {
-            console.log(`🔄 Retrying Conversions API call (${retryCount + 1}/${this.maxRetries})`);
             setTimeout(() => {
               this.sendToConversionsAPI(data, retryCount + 1);
             }, Math.pow(2, retryCount) * 1000);
@@ -431,12 +405,10 @@
           return;
         }
 
-        console.log('✅ CONVERSIONS API: Rich data sent successfully');
       } catch (error) {
         console.error('❌ Conversions API network error:', error);
         
         if (retryCount < this.maxRetries) {
-          console.log(`🔄 Retrying Conversions API call (${retryCount + 1}/${this.maxRetries})`);
           setTimeout(() => {
             this.sendToConversionsAPI(data, retryCount + 1);
           }, Math.pow(2, retryCount) * 1000);
@@ -554,16 +526,6 @@
 
     // Enhanced form submission tracking
     async trackFormSubmission(formType: string, userData?: any): Promise<void> {
-      console.log('🎯 ENHANCED FORM SUBMISSION TRACKING');
-      console.log('📝 Form Type:', formType);
-      console.log('👤 User Data Available:', {
-        email: userData?.email ? '✅' : '❌',
-        phone: userData?.phone ? '✅' : '❌',
-        name: userData?.fullName || userData?.firstName ? '✅' : '❌',
-        address: userData?.address ? '✅' : '❌',
-        postcode: userData?.postcode ? '✅' : '❌'
-      });
-
       await this.trackEvent({
         eventName: 'Lead',
         userData: {

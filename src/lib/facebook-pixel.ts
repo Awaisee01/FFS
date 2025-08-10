@@ -90,7 +90,7 @@ export const trackEvent = (eventName: string, parameters: Record<string, any> = 
           }
         });
         
-        console.log(`🎯 ENHANCED PIXEL: ${eventName} with location & page data:`, enhancedParameters);
+        
         
         (window as any).fbq('track', eventName, enhancedParameters);
       }
@@ -119,7 +119,7 @@ export const captureLocationData = (data: LocationData) => {
     };
     
     localStorage.setItem('user_location', JSON.stringify(updated));
-    console.log('📍 Location data captured:', updated);
+    
   } catch (error) {
     console.warn('Error storing location data:', error);
   }

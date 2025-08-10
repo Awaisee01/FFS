@@ -108,7 +108,6 @@ export const useAdminDashboard = () => {
       epc_score?: string;
     }
   ) => {
-    console.log('📝 updateSubmission called with:', { id, updates });
     try {
       // Validate session before any database operations
       const sessionValid = await validateSession();
@@ -132,7 +131,6 @@ export const useAdminDashboard = () => {
         sanitizedUpdates.contacted_at = new Date().toISOString();
       }
 
-      console.log('📤 About to update submission via edge function:', sanitizedUpdates);
       
       const sessionToken = localStorage.getItem('adminSessionToken');
       if (!sessionToken) {
@@ -148,7 +146,6 @@ export const useAdminDashboard = () => {
         }
       });
 
-      console.log('🔄 Edge function update result:', { data, error });
       
       if (error) {
         console.error('💥 Edge function error:', error);

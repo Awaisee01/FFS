@@ -58,20 +58,16 @@ const sanitizeInput = (input: string): string => {
 const validateFormData = (data: any): { isValid: boolean; errors: string[] } => {
   const errors: string[] = [];
   
-  console.log('🔍 Validating form data:', JSON.stringify(data, null, 2));
   
   // Only require name and service_type - everything else is optional
   if (!data.name || data.name.trim().length === 0) {
-    console.log('❌ Name is missing or empty');
     errors.push('Name is required');
   }
   
   if (!data.service_type) {
-    console.log('❌ Service type is missing');
     errors.push('Service type is required');
   }
   
-  console.log('🔍 Validation result:', { isValid: errors.length === 0, errors });
   return { isValid: errors.length === 0, errors };
 };
 
@@ -112,7 +108,7 @@ serve(async (req) => {
     }
 
     const formData = await req.json()
-    console.log('🔍 Received form data:', JSON.stringify(formData, null, 2));
+    
 
     // Validate form data
     const validation = validateFormData(formData);
@@ -167,20 +163,15 @@ serve(async (req) => {
       )
     }
 
-    // Send email notification
-    console.log('📧 Attempting to send email notification for submission:', submission.id);
-    console.log('📧 Submission data for email:', JSON.stringify(submission, null, 2));
+   
     
     try {
-      // First try with submission ID
-      console.log('📧 Calling send-enquiry-notification with submissionId...');
+ 
       const emailResult = await supabase.functions.invoke('send-enquiry-notification', {
         body: { submissionId: submission.id }
       });
       
-      console.log('📧 Email result status:', emailResult.error ? 'ERROR' : 'SUCCESS');
-      console.log('📧 Email result data:', JSON.stringify(emailResult.data, null, 2));
-      console.log('📧 Email result error:', JSON.stringify(emailResult.error, null, 2));
+   
       
       if (emailResult.error) {
         console.error('📧 Email notification failed, trying direct approach:', emailResult.error);
@@ -198,15 +189,11 @@ serve(async (req) => {
           }
         });
         
-        console.log('📧 Direct email attempt result:', directEmailResult);
-      } else {
-        console.log('✅ Email notification sent successfully via submissionId');
-      }
+      } 
     } catch (emailError) {
       console.error('💥 Email notification exception:', emailError);
       // Try one more time with direct data
       try {
-        console.log('🔄 Retrying email notification with direct data...');
         const retryResult = await supabase.functions.invoke('send-enquiry-notification', {
           body: {
             name: submission.name || 'Customer',
@@ -218,7 +205,6 @@ serve(async (req) => {
             created_at: new Date().toISOString()
           }
         });
-        console.log('🔄 Retry email result:', retryResult);
       } catch (retryError) {
         console.error('💥 Final email retry failed:', retryError);
       }

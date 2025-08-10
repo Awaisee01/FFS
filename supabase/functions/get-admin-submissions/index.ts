@@ -41,7 +41,6 @@ Deno.serve(async (req) => {
       .single()
 
     if (sessionError || !sessionData) {
-      console.log('Session validation failed:', sessionError)
       return new Response(
         JSON.stringify({ error: 'Invalid or expired session' }),
         { 
@@ -85,7 +84,6 @@ Deno.serve(async (req) => {
       )
     }
 
-    console.log(`Admin ${adminUser.email} fetched ${submissions?.length || 0} submissions`)
 
     // Log admin action
     await supabase

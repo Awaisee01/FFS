@@ -57,7 +57,6 @@ export async function initializeFacebookPixel(pixelId: string): Promise<void> {
     noscript.innerHTML = `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1423013825182147&ev=PageView&noscript=1" />`;
     document.head.appendChild(noscript);
 
-    console.log('✅ Facebook Pixel initialized:', pixelId);
   } catch (error) {
     console.error('❌ Facebook Pixel initialization failed:', error);
   }
@@ -225,23 +224,17 @@ export async function trackRobustEvent(
       }
     });
     
-    console.log('🎯 PIXEL PAYLOAD:', {
-      event: eventName,
-      event_id: eventId,
-      data: eventData
-    });
+   
     
     // 1. Send to Facebook Pixel (Browser)
     if ((window as any).fbq) {
       (window as any).fbq('track', eventName, eventData, { eventID: eventId });
-      console.log('✅ PIXEL SENT - Browser tracking completed');
     } else {
       console.warn('⚠️ Facebook Pixel not loaded');
     }
     
     // 2. Send to Conversions API (Server) with same event_id
     await sendToConversionsAPI(eventName, eventData, eventId);
-    console.log('✅ CAPI SENT - Server tracking completed');
     
   } catch (error) {
     console.error('❌ Robust tracking error:', error);
@@ -261,7 +254,6 @@ export function captureLocationData(data: LocationData): void {
     };
     
     localStorage.setItem('user_location', JSON.stringify(updated));
-    console.log('📍 Location data captured:', updated);
   } catch (error) {
     console.warn('Error storing location data:', error);
   }
@@ -282,7 +274,6 @@ export function captureUTMData(): void {
       };
       
       localStorage.setItem('utm_data', JSON.stringify(updated));
-      console.log('📊 UTM data captured:', updated);
     }
   } catch (error) {
     console.warn('Error storing UTM data:', error);

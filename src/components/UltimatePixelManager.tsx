@@ -19,7 +19,6 @@ const UltimatePixelManager: React.FC<PixelManagerProps> = ({
   useEffect(() => {
     const initializeTracking = async () => {
       try {
-        console.log('🚀 ULTIMATE PIXEL MANAGER: Initializing robust tracking system');
 
         // Capture UTM parameters for enhanced tracking
         captureUTMData();
@@ -33,13 +32,10 @@ const UltimatePixelManager: React.FC<PixelManagerProps> = ({
             console.error('❌ PIXEL HEALTH: Critical issues detected');
           } else if (health === 'warning') {
             console.warn('⚠️ PIXEL HEALTH: Performance issues detected');
-          } else {
-            console.log('✅ PIXEL HEALTH: All systems operational');
-          }
+          } 
         }, 1000); // Reduced timeout for faster feedback
 
         setIsInitialized(true);
-        console.log('✅ ULTIMATE PIXEL MANAGER: Robust tracking system ready');
 
       } catch (error) {
         console.error('❌ ULTIMATE PIXEL MANAGER: Initialization failed', error);

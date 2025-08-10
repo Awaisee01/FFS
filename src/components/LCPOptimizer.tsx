@@ -22,7 +22,6 @@ export function LCPOptimizer({ children }: LCPOptimizerProps) {
           
           if (lastEntry.entryType === 'largest-contentful-paint') {
             const lcp = lastEntry.startTime;
-            console.log(`🎯 LCP: ${lcp.toFixed(2)}ms`);
             
             // Mark LCP complete
             if ('performance' in window && 'mark' in performance) {

@@ -25,7 +25,6 @@ serve(async (req) => {
       throw new Error('Email and code are required');
     }
 
-    console.log('Verifying TOTP for email:', email, 'code:', code, 'isSetup:', isSetup);
 
     // Get admin user
     const { data: adminUser, error: fetchError } = await supabaseClient
@@ -45,11 +44,9 @@ serve(async (req) => {
 
     // Improved TOTP verification with better time window handling
     const verifyTOTP = async (secret: string, token: string) => {
-      console.log('Starting TOTP verification with secret length:', secret.length);
       
       // Clean the secret (remove spaces and convert to uppercase)
       const cleanSecret = secret.replace(/\s+/g, '').toUpperCase();
-      console.log('Clean secret:', cleanSecret);
       
       // Convert base32 secret to bytes
       const base32chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
@@ -75,7 +72,6 @@ serve(async (req) => {
         secretBytes[i] = parseInt(bits.slice(i * 8, (i + 1) * 8), 2);
       }
 
-      console.log('Secret bytes length:', secretBytes.length);
 
       // Get current time step (30-second intervals since Unix epoch)
       const currentTime = Math.floor(Date.now() / 1000);

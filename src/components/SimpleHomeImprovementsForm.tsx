@@ -21,7 +21,7 @@ const SimpleHomeImprovementsForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('🏠 HOME IMPROVEMENTS FORM SUBMISSION - Enhanced Rich Data Mode');
+    
     
     if (!formData.fullName || !formData.email || !formData.phone || !formData.postCode) {
       toast.error("Please fill in all required fields");
@@ -36,7 +36,7 @@ const SimpleHomeImprovementsForm = () => {
     setIsSubmitting(true);
     
     try {
-      console.log('📤 STEP 1: Submitting to Supabase with enhanced data...');
+  
       
       // Submit using secure form submission service (with notifications)
       const { data, error } = await supabase.functions.invoke('secure-form-submission', {
@@ -66,8 +66,7 @@ const SimpleHomeImprovementsForm = () => {
         throw new Error(`Submission failed: ${error.message}`);
       }
 
-      console.log('✅ STEP 1 COMPLETE: Supabase submission successful');
-      console.log('🚀 STEP 2: Sending RICH DATA to Facebook via Enhanced Tracking Manager...');
+     
 
       // ENHANCED: Track with rich Facebook data using enhanced tracking manager
       await trackFormSubmission('home_improvements', {
@@ -92,15 +91,7 @@ const SimpleHomeImprovementsForm = () => {
         improvement_category: 'general_upgrades'
       });
 
-      console.log('✅ STEP 2 COMPLETE: Enhanced rich data sent to Facebook');
-      console.log('📊 RICH DATA SENT INCLUDES:');
-      console.log('   - Complete customer profile (name, email, phone, address)');
-      console.log('   - Precise location data (full address + postcode)');
-      console.log('   - Business intelligence (lead value: £45, predicted LTV: £8,000)');
-      console.log('   - Service context (Home Improvement interest, property enhancement)');
-      console.log('   - Campaign attribution (UTM parameters, Facebook cookies)');
-      console.log('   - Multiple Facebook events (Lead + CompleteRegistration + Home Improvement Interest)');
-      console.log('🎯 Facebook algorithm now has rich Home Improvement customer profile for lookalike targeting!');
+      
 
       setIsSubmitting(false);
       setShowSuccess(true);

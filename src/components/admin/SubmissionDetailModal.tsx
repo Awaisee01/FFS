@@ -61,14 +61,7 @@ export const SubmissionDetailModal = ({
   };
 
   const handleSave = async () => {
-    console.log('💾 SubmissionDetailModal handleSave called with:', {
-      status: editingStatus,
-      admin_notes: editingNotes,
-      property_type: propertyType,
-      property_ownership: propertyOwnership,
-      current_heating_system: currentHeatingSystem,
-      epc_score: epcScore
-    });
+
     
     onSave({
       status: editingStatus,

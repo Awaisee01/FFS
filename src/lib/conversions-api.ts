@@ -45,8 +45,7 @@ export const sendToConversionsAPI = async (
   eventId: string
 ): Promise<{ success: boolean; response?: any }> => {
   try {
-    console.log('🚀 CONVERSIONS API: Preparing to send event:', eventName);
-    console.log('🚀 CONVERSIONS API: Event ID for deduplication:', eventId);
+   
     
     // Extract user data for server-side hashing
     const userData: Record<string, any> = {};
@@ -95,16 +94,7 @@ export const sendToConversionsAPI = async (
       ipAddress: undefined // Will be extracted server-side
     };
     
-    console.log('📊 CAPI PAYLOAD DETAILS:');
-    console.log('  Event Name:', eventName);
-    console.log('  Event ID (deduplication):', eventId);
-    console.log('  Value:', customData.value, 'GBP');
-    console.log('  Content Name:', customData.content_name);
-    console.log('  Content Category:', customData.content_category);
-    console.log('  Facebook Cookies:', { fbc, fbp });
-    console.log('  UTM Data:', utmData);
-    console.log('  Location Data:', { postcode: eventData.postcode, county: eventData.county });
-    console.log('  Full Payload:', JSON.stringify(conversionData, null, 2));
+    
     
     // Send to Supabase Edge Function
     const response = await fetch('https://pchynbefgbupbmkqfrqe.supabase.co/functions/v1/facebook-conversions-api', {
@@ -117,13 +107,9 @@ export const sendToConversionsAPI = async (
     
     const responseData = await response.json();
     
-    console.log('📡 CAPI RESPONSE STATUS:', response.status, response.statusText);
-    console.log('📡 CAPI RESPONSE HEADERS:', Object.fromEntries(response.headers.entries()));
-    console.log('📡 CAPI RESPONSE BODY:', responseData);
-    
+  
     if (response.ok) {
-      console.log('✅ CONVERSIONS API: Event queued successfully');
-      console.log('✅ Expected: Facebook will show this as "Server & Browser" event with event_id:', eventId);
+     
       return { success: true, response: responseData };
     } else {
       console.error('❌ CONVERSIONS API: HTTP Error:', response.status, response.statusText);

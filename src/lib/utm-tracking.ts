@@ -22,11 +22,9 @@ export const getFacebookClickId = (): string | null => {
     
     if (fbcCookie) {
       const fbc = fbcCookie.split('=')[1];
-      console.log('📊 Facebook Click ID (_fbc) found:', fbc);
       return fbc;
     }
     
-    console.log('📊 No Facebook Click ID (_fbc) cookie found');
     return null;
   } catch (error) {
     console.warn('⚠️ Error retrieving Facebook Click ID:', error);
@@ -48,11 +46,9 @@ export const getFacebookBrowserId = (): string | null => {
     
     if (fbpCookie) {
       const fbp = fbpCookie.split('=')[1];
-      console.log('📊 Facebook Browser ID (_fbp) found:', fbp);
       return fbp;
     }
     
-    console.log('📊 No Facebook Browser ID (_fbp) cookie found');
     return null;
   } catch (error) {
     console.warn('⚠️ Error retrieving Facebook Browser ID:', error);
@@ -109,9 +105,7 @@ export const trackPixelEventWithUTM = (
     return;
   }
   
-  console.log(`🔥 ENHANCED PIXEL: ${eventName} tracking initiated`);
-  console.log('🔥 ENHANCED PIXEL: Event data:', JSON.stringify(eventData, null, 2));
-  console.log('🔥 ENHANCED PIXEL: Event ID:', eventId);
+ 
 
   try {
     const utmData = getUTMData();
@@ -169,12 +163,10 @@ export const trackPixelEventWithUTM = (
       }
     });
 
-    console.log(`🎯 ENHANCED PIXEL: ${eventName} with full tracking data:`, enhancedParameters);
 
     // Send to browser pixel
     if ((window as any).fbq) {
       (window as any).fbq('track', eventName, enhancedParameters);
-      console.log('✅ BROWSER PIXEL: Event sent successfully');
     }
 
     // Send to Conversions API for server-side tracking
@@ -188,7 +180,6 @@ export const trackPixelEventWithUTM = (
     try {
       if (typeof (window as any).fbq === 'function') {
         (window as any).fbq('track', eventName, eventData);
-        console.log(`✅ PIXEL: ${eventName} fallback tracking successful`);
       }
     } catch (fallbackError) {
       console.error(`❌ PIXEL: ${eventName} fallback tracking failed:`, fallbackError);
@@ -245,9 +236,7 @@ export const trackLeadWithUTM = (leadData: {
   ln?: string;
   zp?: string;
 }, eventId?: string): void => {
-  console.log('🔥 PIXEL Lead event sent with enhanced data');
-  console.log('🔥 PIXEL Event ID:', eventId);
-  console.log('🔥 PIXEL Lead data:', JSON.stringify(leadData, null, 2));
+ 
   
   // Generate dynamic value based on service type to pass Facebook validation
   const dynamicValue = generateLeadValue(leadData.content_category, leadData.content_name);
@@ -260,13 +249,9 @@ export const trackLeadWithUTM = (leadData: {
     event_value_id: leadData.event_value_id || eventId
   };
   
-  console.log('🔥 PIXEL Final Lead payload for Events Manager:', JSON.stringify(standardizedLeadData, null, 2));
-  console.log('🔥 PIXEL Generated dynamic value:', dynamicValue, 'for service:', leadData.content_category);
-  console.log('🔥 PIXEL Value type:', typeof standardizedLeadData.value, '(must be number)');
-  console.log('🔥 PIXEL Currency:', standardizedLeadData.currency, '(must be GBP)');
+ 
   
   trackPixelEventWithUTM('Lead', standardizedLeadData, eventId);
-  console.log('🔥 PIXEL Lead tracking completed with eventID:', String(eventId));
 };
 
 /**
@@ -278,7 +263,6 @@ export const trackViewContentWithUTM = (contentData: {
   value?: number;
   currency?: string;
 }, eventId?: string): void => {
-  console.log('🔥 DEBUG: trackViewContentWithUTM called with eventId:', eventId);
   
   // CRITICAL: Ensure value is ALWAYS a number and currency is ALWAYS "GBP"
   const standardizedContentData = {
@@ -287,10 +271,8 @@ export const trackViewContentWithUTM = (contentData: {
     currency: "GBP" // ALWAYS 3-letter ISO code
   };
   
-  console.log('✅ PIXEL: ViewContent event data (standardized):', standardizedContentData);
   
   trackPixelEventWithUTM('ViewContent', standardizedContentData, eventId);
-  console.log('✅ PIXEL: ViewContent tracking completed with eventID:', String(eventId));
 };
 
 /**
@@ -302,7 +284,6 @@ export const trackInitiateCheckoutWithUTM = (checkoutData: {
   value?: number;
   currency?: string;
 }, eventId?: string): void => {
-  console.log('🔥 DEBUG: trackInitiateCheckoutWithUTM called with eventId:', eventId);
   
   // CRITICAL: Ensure value is ALWAYS a number and currency is ALWAYS "GBP"
   const standardizedCheckoutData = {
@@ -311,10 +292,8 @@ export const trackInitiateCheckoutWithUTM = (checkoutData: {
     currency: "GBP" // ALWAYS 3-letter ISO code
   };
   
-  console.log('✅ PIXEL: InitiateCheckout event data (standardized):', standardizedCheckoutData);
   
   trackPixelEventWithUTM('InitiateCheckout', standardizedCheckoutData, eventId);
-  console.log('✅ PIXEL: InitiateCheckout tracking completed with eventID:', String(eventId));
 };
 
 /**

@@ -38,7 +38,6 @@ export const trackFormSubmission = (userData: {
 };
 
 export const submitFormToDatabase = async (data: FormSubmissionData) => {
-  console.log('📝 Form submission:', data.serviceType);
 
   try {
     // Insert into Supabase database only - no analytics
@@ -64,7 +63,6 @@ export const submitFormToDatabase = async (data: FormSubmissionData) => {
       throw new Error(`Database error: ${error.message}`);
     }
 
-    console.log('✅ Form submitted successfully');
     
     // Track Lead event with rich customer data for better match quality
     try {
@@ -74,7 +72,6 @@ export const submitFormToDatabase = async (data: FormSubmissionData) => {
         name: data.name,
         postcode: data.postcode
       }, data.serviceType);
-      console.log('📊 Lead event tracked with customer data');
     } catch (trackingError) {
       console.error('⚠️ Lead tracking failed:', trackingError);
       // Don't throw error - form submission was successful
@@ -93,7 +90,6 @@ export const submitFormToDatabase = async (data: FormSubmissionData) => {
           created_at: result.created_at
         }
       });
-      console.log('📧 Email notification sent');
     } catch (emailError) {
       console.error('⚠️ Email notification failed:', emailError);
       // Don't throw error - form submission was successful

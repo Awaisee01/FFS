@@ -14,7 +14,6 @@ Deno.serve(async (req) => {
   try {
     const { session_token, submission_ids } = await req.json();
     
-    console.log('🗑️ Bulk delete request:', { submission_ids });
 
     if (!session_token) {
       console.error('❌ No session token provided');
@@ -93,7 +92,6 @@ Deno.serve(async (req) => {
       );
     }
 
-    console.log('✅ Admin authenticated, proceeding with bulk delete');
 
     // Perform bulk delete
     const { error: deleteError } = await supabase
@@ -112,7 +110,6 @@ Deno.serve(async (req) => {
       );
     }
 
-    console.log('✅ Successfully deleted submissions:', submission_ids);
 
     // Log the bulk delete action
     await supabase

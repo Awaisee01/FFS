@@ -25,7 +25,6 @@ interface FormConversionData {
  */
 export const sendFormCompletionToFacebook = async (data: FormConversionData): Promise<void> => {
   try {
-    console.log('🚀 FACEBOOK CONVERSION: Sending form completion data');
     
     // Get UTM data from localStorage
     const getUTMData = () => {
@@ -68,7 +67,6 @@ export const sendFormCompletionToFacebook = async (data: FormConversionData): Pr
       userAgent: navigator.userAgent
     };
 
-    console.log('📊 FACEBOOK CONVERSION: Payload prepared:', conversionPayload);
 
     // Send to Supabase Edge Function
     const response = await fetch(`https://pchynbefgbupbmkqfrqe.supabase.co/functions/v1/facebook-conversions-api`, {
@@ -81,7 +79,6 @@ export const sendFormCompletionToFacebook = async (data: FormConversionData): Pr
 
     if (response.ok) {
       const result = await response.json();
-      console.log('✅ FACEBOOK CONVERSION: Successfully sent to Facebook:', result);
     } else {
       const errorText = await response.text();
       console.error('❌ FACEBOOK CONVERSION: Failed to send:', response.status, errorText);

@@ -391,7 +391,6 @@ class IntelligentFormTracker {
       abandonmentPoint: this.analytics.abandonmentPoint
     };
 
-    console.log('📊 FORM ANALYTICS REPORT:', report);
     
     // Send to analytics if needed
     try {

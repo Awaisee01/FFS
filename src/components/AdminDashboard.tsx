@@ -145,7 +145,6 @@ const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
     epc_score?: string;
   }) => {
     if (selectedSubmission) {
-      console.log('💾 AdminDashboard handleSaveSubmission called with:', updates);
       await updateSubmission(selectedSubmission.id, updates);
       setSelectedSubmission(null);
     }

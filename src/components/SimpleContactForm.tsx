@@ -20,7 +20,6 @@ const SimpleContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Contact form submitting:', formData);
     
     if (!formData.fullName || !formData.email || !formData.phone || !formData.postCode) {
       toast.error("Please fill in all required fields");

@@ -42,7 +42,6 @@ interface ConversionData {
 }
 
 serve(async (req) => {
-  console.log('🚀 Facebook Conversions API function called')
   
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
@@ -52,7 +51,6 @@ serve(async (req) => {
   let requestData: any
   try {
     requestData = await req.json()
-    console.log('📊 Received conversion data:', requestData)
     
     // Validate request structure
     if (!requestData || !requestData.data) {
@@ -85,7 +83,6 @@ serve(async (req) => {
   // Background processing function
   async function processConversion(data: ConversionData) {
     try {
-      console.log('🔄 Processing conversion:', data.eventName)
       
       // Get Facebook access token from secrets
       const accessToken = Deno.env.get('FACEBOOK_CONVERSIONS_API_ACCESS_TOKEN')
@@ -102,11 +99,7 @@ serve(async (req) => {
         return;
       }
 
-      console.log('✅ Facebook credentials found and validated:', {
-        tokenPrefix: accessToken.substring(0, 10) + '...',
-        pixelId: pixelId,
-        tokenLength: accessToken.length
-      })
+    
 
       // Prepare the conversion event
       const eventTime = Math.floor(Date.now() / 1000)
@@ -201,7 +194,6 @@ serve(async (req) => {
       // Add event ID for deduplication if provided
       if (data.eventId) {
         eventPayload.event_id = String(data.eventId) // Ensure it's always a string
-        console.log('📊 CAPI event ID (event_id):', String(data.eventId));
       }
 
       // Validate required fields for Facebook CAPI
@@ -223,11 +215,9 @@ serve(async (req) => {
         // Remove test_event_code for production
       }
 
-      console.log('📊 Complete CAPI payload being sent to Facebook:', JSON.stringify(eventData, null, 2));
 
       // Send to Facebook Conversions API with latest version
       const apiUrl = `https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${accessToken}`;
-      console.log('🔗 API URL:', apiUrl.replace(accessToken, 'TOKEN_HIDDEN'));
       
       const response = await fetch(apiUrl, {
         method: 'POST',
@@ -239,13 +229,6 @@ serve(async (req) => {
 
       const result = await response.json()
       
-      console.log('🔥 DEBUG: Facebook API Response Details:', {
-        status: response.status,
-        statusText: response.statusText,
-        ok: response.ok,
-        headers: Object.fromEntries(response.headers.entries()),
-        result: result
-      });
       
       if (!response.ok) {
         console.error('❌ Facebook Conversions API HTTP error:', {
@@ -268,23 +251,8 @@ serve(async (req) => {
         return
       }
 
-      console.log('✅ Facebook Conversions API success:', result)
       
-      // Enhanced response logging
-      if (result.events_received !== undefined) {
-        console.log(`📊 Events received by Facebook: ${result.events_received}`)
-      }
-      
-      if (result.fbtrace_id) {
-        console.log(`🔍 Facebook trace ID: ${result.fbtrace_id}`)
-      }
-      
-      // Check for warnings in the response
-      if (result.messages && result.messages.length > 0) {
-        console.warn('⚠️ Facebook API warnings:', result.messages)
-      } else {
-        console.log('✅ No Facebook API warnings - clean event submission')
-      }
+     
 
     } catch (error) {
       console.error('❌ Background conversion processing error:', error)
@@ -295,7 +263,7 @@ serve(async (req) => {
   try {
     // @ts-ignore - EdgeRuntime is available in Supabase Edge Functions
     EdgeRuntime.waitUntil(processConversion(requestData.data))
-    console.log('✅ Background processing task queued successfully')
+    
   } catch (error) {
     console.error('❌ Failed to queue background processing:', error)
     // Fallback to regular async processing

@@ -20,7 +20,6 @@ interface EnquiryNotificationRequest {
 }
 
 const handler = async (req: Request): Promise<Response> => {
-  console.log('Enquiry notification function called');
   
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -34,13 +33,11 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const requestData = await req.json();
-    console.log('Request data received:', requestData);
     
     let enquiryData: EnquiryNotificationRequest;
     
     // Check if this is a submissionId format (from secure-form-submission)
     if (requestData.submissionId) {
-      console.log('Getting submission data from database for ID:', requestData.submissionId);
       
       // Fetch submission data from database
       const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
@@ -77,7 +74,6 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error('Name and service_type are required');
     }
     
-    console.log('Processing enquiry notification for:', enquiryData.name);
 
     // Validate environment variables
     if (!Deno.env.get("RESEND_API_KEY")) {

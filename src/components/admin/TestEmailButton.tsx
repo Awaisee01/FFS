@@ -13,7 +13,6 @@ export const TestEmailButton = () => {
     setIsLoading(true);
     
     try {
-      console.log('Testing form submission notification...');
       
       // Test by inserting a test form submission which will trigger the notification
       const { data, error } = await supabase
@@ -38,7 +37,6 @@ export const TestEmailButton = () => {
         throw error;
       }
       
-      console.log('Test submission created:', data);
       
       toast({
         title: "Test Notification Triggered!",
