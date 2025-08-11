@@ -2,80 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  
+  <!-- Basic SEO -->
   <title>Free Government Grants Scotland - ECO4, Solar Panels & Home Improvements | Funding For Scotland</title>
   <meta name="description" content="Get 100% free government funding for ECO4 insulation, solar panels, gas boilers and home improvements in Scotland. Professional installation, no upfront costs. Apply today!" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="index, follow" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-
-  <!-- SEO critical -->
   <link rel="canonical" href="https://fundingforscotland.com/" />
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/public/lovable-uploads/headop.webp">
 
-  <!-- Preconnect only critical -->
+  <!-- Security Headers (inline fallback) -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https: data:; script-src 'self' https: 'unsafe-inline' 'unsafe-eval'">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Free Government Grants Scotland - ECO4, Solar Panels & Home Improvements" />
+  <meta property="og:description" content="Get 100% free government funding for ECO4 insulation, solar panels, gas boilers and home improvements in Scotland. Apply today!" />
+  <meta property="og:image" content="https://fundingforscotland.com/og-image.jpg" />
+  <meta property="og:url" content="https://fundingforscotland.com/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free Government Grants Scotland - ECO4, Solar Panels & Home Improvements" />
+  <meta name="twitter:description" content="100% free government funding for ECO4 insulation, solar panels, gas boilers and home improvements in Scotland." />
+  <meta name="twitter:image" content="https://fundingforscotland.com/og-image.jpg" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Funding For Scotland",
+    "url": "https://fundingforscotland.com",
+    "logo": "https://fundingforscotland.com/logo.png",
+    "sameAs": [
+      "https://www.facebook.com/fundingforscotland",
+      "https://twitter.com/fundingscotland"
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Preload only essential CSS -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" crossorigin></noscript>
+  <!-- Preload hero image -->
+  <link rel="preload" as="image" href="/images/hero.jpg">
 
-  <!-- Critical CSS only -->
+  <!-- Critical CSS inline -->
   <style>
-    html,body{margin:0;padding:0;font-family:Inter,sans-serif;background:#fff;color:#1a1a1a;line-height:1.6;}
-    .min-h-screen{min-height:100vh}
-    .flex{display:flex}
-    .items-center{align-items:center}
-    .justify-center{justify-content:center}
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: #fff;
+      color: #333;
+    }
+    header, main, footer {
+      display: block;
+    }
   </style>
 
+  <!-- Preload app entry -->
+  <link rel="modulepreload" href="/assets/index.js">
 
-  <!-- Preload main app entry only -->
-  <link rel="modulepreload" href="/src/main.tsx">
-
-  <!-- Security Headers -->
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <!-- Noscript fallback for fonts -->
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  </noscript>
 </head>
 <body>
   <div id="root"></div>
 
-  <!-- Main app script -->
-  <script type="module" src="/src/main.tsx"></script>
+  <!-- Facebook Pixel deferred -->
+  <script>
+    requestIdleCallback(() => {
+      !function(f,b,e,v,n,t,s){
+        if(f.fbq)return;
+        n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)n.queue=[];
+        t=b.createElement(e);t.async=!0;
+        t.src=v;
+        s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)
+      }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'XXXXXXXXXXXXXXX');
+      fbq('track', 'PageView');
+    });
+  </script>
 
   <!-- Service Worker deferred -->
   <script>
-    if ('serviceWorker' in navigator) {
-      requestIdleCallback(() => {
-        navigator.serviceWorker.register('/sw.js').catch(()=>{});
-      });
-    }
-  </script>
-
-  <!-- Facebook Pixel - fully deferred -->
-  <script>
-    requestIdleCallback(function() {
-      !function(f,b,e,v,n,t,s){
-        if(f.fbq)return;n=f.fbq=function(){
-          n.callMethod? n.callMethod.apply(n,arguments) : n.queue.push(arguments)
-        };
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)
-      }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-
-      fbq('init', '1423013825182147', {external_id: 'funding_scotland_' + Date.now()});
-      fbq('track', 'PageView', {
-        content_name: 'Website Visit',
-        page_type: window.location.pathname.includes('/eco4') ? 'eco4_landing' :
-                   window.location.pathname.includes('/solar') ? 'solar_landing' : 'homepage',
-        value: 1,
-        currency: 'GBP'
-      });
+    requestIdleCallback(() => {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(console.error);
+      }
     });
   </script>
-  <noscript>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1423013825182147&ev=PageView&noscript=1" />
-  </noscript>
+
+  <!-- App entry -->
+  <script type="module" src="/assets/index.js"></script>
 </body>
 </html>
